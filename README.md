@@ -1,0 +1,2 @@
+# Cuberealms-Wiki
+Cuberealms Wiki
