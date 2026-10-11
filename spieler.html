@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+
+<html lang="de">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cuberealms Wiki – Spieler</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+
+            color: white;
+
+            font-family: "Press Start 2P", monospace;
+
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.35),
+                    rgba(0, 0, 0, 0.78)
+                ),
+                url("wiki.png") center center / cover fixed no-repeat;
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+
+            text-align: center;
+
+            padding: 55px 20px;
+
+            background: rgba(0, 0, 0, 0.60);
+
+            border-bottom: 4px solid #3f8f3f;
+
+            box-shadow:
+                0 5px 0 rgba(0, 0, 0, 0.5);
+        }
+
+
+        header h1 {
+
+            margin: 0;
+
+            font-size: 34px;
+
+            text-shadow:
+                4px 4px 0 #000,
+                0 0 10px #000;
+        }
+
+
+        header p {
+
+            margin-top: 22px;
+
+            font-size: 13px;
+
+            text-shadow:
+                3px 3px 0 #000;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            padding: 14px;
+
+            background: rgba(0, 0, 0, 0.88);
+
+            backdrop-filter: blur(5px);
+
+            border-bottom: 3px solid #3f8f3f;
+        }
+
+
+        nav a {
+
+            display: inline-block;
+
+            padding: 12px 16px;
+
+            color: white;
+
+            text-decoration: none;
+
+            background: #1b1b1b;
+
+            border: 2px solid #555;
+
+            box-shadow:
+                3px 3px 0 #000;
+
+            font-size: 11px;
+
+            transition: 0.15s;
+        }
+
+
+        nav a:hover {
+
+            background: #2f7d32;
+
+            border-color: #6fcf6f;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           HAUPTBEREICH
+        ========================= */
+
+        main {
+
+            max-width: 1150px;
+
+            margin: 55px auto;
+
+            padding: 20px;
+        }
+
+
+        /* =========================
+           EINLEITUNG
+        ========================= */
+
+        .intro {
+
+            text-align: center;
+
+            margin-bottom: 45px;
+
+            padding: 30px;
+
+            background: rgba(0, 0, 0, 0.72);
+
+            border: 3px solid #3f8f3f;
+
+            box-shadow:
+                0 0 0 3px #173d17,
+                7px 7px 0 #000;
+        }
+
+
+        .intro h2 {
+
+            margin-top: 0;
+
+            font-size: 22px;
+
+            text-shadow:
+                3px 3px 0 #000;
+        }
+
+
+        .intro p {
+
+            font-size: 11px;
+
+            line-height: 1.9;
+
+            color: #ddd;
+        }
+
+
+        /* =========================
+           SPIELER-GRID
+        ========================= */
+
+        .spieler-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 30px;
+        }
+
+
+        /* =========================
+           SPIELER-KARTE
+        ========================= */
+
+        .player {
+
+            display: block;
+
+            text-align: center;
+
+            padding: 30px 20px;
+
+            color: white;
+
+            text-decoration: none;
+
+            background: rgba(0, 0, 0, 0.78);
+
+            border: 3px solid #3f8f3f;
+
+            box-shadow:
+                7px 7px 0 #000;
+
+            transition:
+                transform 0.15s,
+                box-shadow 0.15s,
+                background 0.15s;
+        }
+
+
+        .player:hover {
+
+            transform: translateY(-7px);
+
+            background: rgba(25, 80, 25, 0.88);
+
+            box-shadow:
+                10px 10px 0 #000;
+        }
+
+
+        .player img {
+
+            width: 120px;
+
+            height: 120px;
+
+            image-rendering: pixelated;
+
+            margin-bottom: 20px;
+
+            filter:
+                drop-shadow(5px 5px 0 #000);
+        }
+
+
+        .player h2 {
+
+            margin: 0 0 15px 0;
+
+            font-size: 16px;
+
+            text-shadow:
+                3px 3px 0 #000;
+        }
+
+
+        .player p {
+
+            margin: 0;
+
+            font-size: 9px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           RANG-FARBEN
+        ========================= */
+
+        .rang-owner {
+
+            color: #d4af37 !important;
+        }
+
+
+        .rang-admin {
+
+            color: #ff6666 !important;
+        }
+
+
+        .rang-developer {
+
+            color: #5fa8ff !important;
+        }
+
+
+        .rang-builder {
+
+            color: #62d36b !important;
+        }
+
+
+        .rang-media {
+
+            color: #c875e8 !important;
+        }
+
+
+        .rang-spieler {
+
+            color: #aaa !important;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            margin-top: 70px;
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            background: rgba(0, 0, 0, 0.82);
+
+            border-top: 3px solid #3f8f3f;
+
+            color: #aaa;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================
+           HANDY
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            header {
+
+                padding: 45px 15px;
+            }
+
+
+            header h1 {
+
+                font-size: 24px;
+            }
+
+
+            header p {
+
+                font-size: 10px;
+            }
+
+
+            nav a {
+
+                font-size: 9px;
+
+                padding: 10px;
+            }
+
+
+            main {
+
+                margin: 30px auto;
+
+                padding: 15px;
+            }
+
+
+            .intro {
+
+                padding: 20px;
+            }
+
+
+            .intro h2 {
+
+                font-size: 17px;
+            }
+
+
+            .player {
+
+                padding: 25px 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <h1>👥 Spieler</h1>
+
+        <p>Die Spieler von Cuberealm</p>
+
+    </header>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav>
+
+        <a href="index.html">🏠 Startseite</a>
+
+        <a href="spieler.html">👥 Spieler</a>
+
+        <a href="raenge.html">🏆 Ränge</a>
+
+        <a href="spielmodi.html">🎮 Spielmodi</a>
+
+        <a href="bauwerke.html">🏗️ Bauwerke</a>
+
+        <a href="karte.html">🗺️ Karte</a>
+
+        <a href="fraktionen.html">⚔️ Fraktionen</a>
+
+    </nav>
+
+
+    <!-- =========================
+         HAUPTINHALT
+    ========================= -->
+
+    <main>
+
+
+        <section class="intro">
+
+            <h2>Spieler von Cuberealm</h2>
+
+            <p>
+                Hier findest du die bekannten Spieler
+                und Teammitglieder von Cuberealm.
+            </p>
+
+            <p>
+                Klicke auf einen Spieler, um mehr über ihn
+                zu erfahren.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             SPIELER
+        ========================= -->
+
+        <section class="spieler-grid">
+
+
+            <!-- AARON -->
+
+            <a class="player" href="aaron.html">
+
+                <img
+                    src="https://mc-heads.net/avatar/CreeperCraft785/120"
+                    alt="Aaron"
+                >
+
+                <h2>Aaron</h2>
+
+                <p class="rang-owner">
+                    Owner
+                </p>
+
+            </a>
+
+
+            <!-- ERIC -->
+
+            <a class="player" href="eric.html">
+
+                <img
+                    src="https://mc-heads.net/avatar/Eric_12345678910/120"
+                    alt="Eric"
+                >
+
+                <h2>Eric</h2>
+
+                <p class="rang-spieler">
+                    Spieler
+                </p>
+
+            </a>
+
+
+            <!-- ERIC2 -->
+
+            <a class="player" href="eric2.html">
+
+                <img
+                    src="https://mc-heads.net/avatar/sqxirrxl/120"
+                    alt="Eric2"
+                >
+
+                <h2>Eric2</h2>
+
+                <p class="rang-admin">
+                    Admin
+                </p>
+
+            </a>
+
+
+            <!-- ANTON -->
+
+            <a class="player" href="anton.html">
+
+                <img
+                    src="https://mc-heads.net/avatar/.Antom5508/120"
+                    alt="Anton"
+                >
+
+                <h2>Anton</h2>
+
+                <p class="rang-admin">
+                    Admin
+                </p>
+
+            </a>
+
+
+            <!-- OSKAR -->
+
+            <a class="player" href="oskar.html">
+
+                <img
+                    src="https://mc-heads.net/avatar/RaksoMCP/120"
+                    alt="Oskar"
+                >
+
+                <h2>Oskar</h2>
+
+                <p class="rang-media">
+                    Media
+                </p>
+
+            </a>
+
+
+            <!-- THEOPA -->
+
+            <a class="player" href="theopa.html">
+
+                <img
+                    src="https://mc-heads.net/avatar/Theopa/120"
+                    alt="Theopa"
+                >
+
+                <h2>Theopa</h2>
+
+                <p class="rang-spieler">
+                    Spieler
+                </p>
+
+            </a>
+
+
+            <!-- MASTERIX -->
+
+            <a class="player" href="masterix.html">
+
+                <img
+                    src="https://mc-heads.net/avatar/MAsterix11/120"
+                    alt="Masterix"
+                >
+
+                <h2>Masterix</h2>
+
+                <p class="rang-developer">
+                    Developer
+                </p>
+
+            </a>
+
+
+            <!-- WALTERFROSCH -->
+
+            <a class="player" href="walterfrosch.html">
+
+                <img
+                    src="https://mc-heads.net/avatar/__WalterFrosch__/120"
+                    alt="Walterfrosch"
+                >
+
+                <h2>Walterfrosch</h2>
+
+                <p class="rang-admin">
+                    Admin
+                </p>
+
+            </a>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        Cuberealm Wiki
+
+        <br><br>
+
+        Eine Minecraft-Welt von uns für uns. ⛏️
+
+    </footer>
+
+
+</body>
+
+</html>

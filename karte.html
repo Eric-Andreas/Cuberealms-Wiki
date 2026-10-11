@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Karte – Cuberealm Wiki</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            font-family: "Press Start 2P", monospace;
+            color: white;
+
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.35),
+                    rgba(0, 0, 0, 0.70)
+                ),
+                url("wiki.png") center center / cover fixed no-repeat;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+
+            padding: 18px;
+
+            background: rgba(20, 90, 20, 0.95);
+            border-bottom: 4px solid #173d17;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        nav a:hover {
+            color: #7cff7c;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            color: #7cff7c;
+            text-shadow: 4px 4px #173d17;
+        }
+
+        .map-box {
+            margin-top: 40px;
+            padding: 25px;
+
+            background: rgba(0, 0, 0, 0.80);
+            border: 5px solid #3f8f3f;
+            box-shadow: 0 0 0 4px #173d17;
+        }
+
+        .map {
+            min-height: 600px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                repeating-linear-gradient(
+                    45deg,
+                    #4b7d35,
+                    #4b7d35 20px,
+                    #527f38 20px,
+                    #527f38 40px
+                );
+
+            border: 4px solid #222;
+
+            color: white;
+            text-align: center;
+        }
+
+        .map-text {
+            padding: 30px;
+
+            background: rgba(0, 0, 0, 0.75);
+            border: 3px solid #6fcf6f;
+        }
+
+        .map-text h2 {
+            color: #7cff7c;
+            font-size: 20px;
+        }
+
+        .map-text p {
+            font-size: 11px;
+            line-height: 2;
+            color: #ddd;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            font-size: 10px;
+            color: #aaa;
+        }
+
+        @media (max-width: 700px) {
+            h1 {
+                font-size: 22px;
+            }
+
+            .container {
+                margin: 30px 10px;
+                padding: 10px;
+            }
+
+            .map {
+                min-height: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html">Startseite</a>
+        <a href="spieler.html">Spieler</a>
+        <a href="bauwerke.html">Bauwerke</a>
+        <a href="karte.html">Karte</a>
+        <a href="geschichte.html">Geschichte</a>
+    </nav>
+
+    <main class="container">
+
+        <h1>🗺️ Karte von Cuberealm</h1>
+
+        <div class="map-box">
+
+            <div class="map">
+
+                <div class="map-text">
+                    <h2>Cuberealm Map</h2>
+
+                    <p>
+                        Die Karte von Cuberealm
+                        kommt hier hin.
+                    </p>
+
+                    <p>
+                        🏠 Dörfer<br>
+                        🏰 Burgen<br>
+                        ⛏️ Minen<br>
+                        🌳 Wälder
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        Cuberealm Wiki
+    </footer>
+
+</body>
+</html>

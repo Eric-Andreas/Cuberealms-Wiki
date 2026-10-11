@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+
+<html lang="de">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cuberealms Wiki</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+
+            color: white;
+
+            font-family: "Press Start 2P", monospace;
+
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.35),
+                    rgba(0, 0, 0, 0.78)
+                ),
+                url("wiki.png") center center / cover fixed no-repeat;
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+
+            text-align: center;
+
+            padding: 60px 20px;
+
+            background: rgba(0, 0, 0, 0.60);
+
+            border-bottom: 4px solid #3f8f3f;
+
+            box-shadow:
+                0 5px 0 rgba(0, 0, 0, 0.5);
+        }
+
+
+        header h1 {
+
+            margin: 0;
+
+            font-size: 38px;
+
+            text-shadow:
+                4px 4px 0 #000,
+                0 0 10px #000;
+        }
+
+
+        header p {
+
+            margin-top: 22px;
+
+            font-size: 13px;
+
+            text-shadow:
+                3px 3px 0 #000;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            padding: 14px;
+
+            background: rgba(0, 0, 0, 0.88);
+
+            backdrop-filter: blur(5px);
+
+            border-bottom: 3px solid #3f8f3f;
+        }
+
+
+        nav a {
+
+            display: inline-block;
+
+            padding: 12px 16px;
+
+            color: white;
+
+            text-decoration: none;
+
+            background: #1b1b1b;
+
+            border: 2px solid #555;
+
+            box-shadow:
+                3px 3px 0 #000;
+
+            font-size: 11px;
+
+            transition: 0.15s;
+        }
+
+
+        nav a:hover {
+
+            background: #2f7d32;
+
+            border-color: #6fcf6f;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           SUCHBEREICH
+        ========================= */
+
+        .suchbereich {
+
+            max-width: 900px;
+
+            margin: 25px auto;
+
+            padding: 0 20px;
+
+            position: relative;
+
+            z-index: 5;
+        }
+
+
+        .suchleiste {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 14px 18px;
+
+            background: rgba(0, 0, 0, 0.85);
+
+            border: 3px solid #3f8f3f;
+
+            box-shadow:
+                0 0 0 3px #173d17;
+        }
+
+
+        .suchleiste span {
+
+            font-size: 20px;
+        }
+
+
+        .suchleiste input {
+
+            width: 100%;
+
+            border: none;
+
+            outline: none;
+
+            background: transparent;
+
+            color: white;
+
+            font-family: "Press Start 2P", monospace;
+
+            font-size: 12px;
+        }
+
+
+        .suchleiste input::placeholder {
+
+            color: #aaa;
+        }
+
+
+        #suchErgebnisse {
+
+            margin-top: 8px;
+        }
+
+
+        .such-ergebnis,
+        .kein-treffer {
+
+            display: block;
+
+            padding: 14px 18px;
+
+            background: rgba(0, 0, 0, 0.92);
+
+            border: 2px solid #3f8f3f;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 11px;
+        }
+
+
+        .such-ergebnis:hover {
+
+            background: #2f7d32;
+
+            color: white;
+        }
+
+
+        .such-ergebnis span {
+
+            margin-right: 10px;
+        }
+
+
+        .kein-treffer {
+
+            color: #ff7777;
+        }
+
+
+        /* =========================
+           HAUPTBEREICH
+        ========================= */
+
+        main {
+
+            max-width: 1100px;
+
+            margin: 50px auto;
+
+            padding: 20px;
+        }
+
+
+        /* =========================
+           WILLKOMMEN
+        ========================= */
+
+        .welcome {
+
+            text-align: center;
+
+            padding: 35px;
+
+            margin-bottom: 40px;
+
+            background: rgba(0, 0, 0, 0.72);
+
+            border: 3px solid #3f8f3f;
+
+            box-shadow:
+                0 0 0 3px #173d17,
+                7px 7px 0 #000;
+        }
+
+
+        .welcome h2 {
+
+            margin-top: 0;
+
+            font-size: 24px;
+
+            text-shadow:
+                3px 3px 0 #000;
+        }
+
+
+        .welcome p {
+
+            font-size: 11px;
+
+            line-height: 1.9;
+
+            color: #ddd;
+        }
+
+
+        /* =========================
+           BOXEN
+        ========================= */
+
+        .boxes {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 30px;
+        }
+
+
+        .box {
+
+            display: block;
+
+            padding: 30px;
+
+            min-height: 230px;
+
+            color: white;
+
+            text-decoration: none;
+
+            background: rgba(0, 0, 0, 0.78);
+
+            border: 3px solid #3f8f3f;
+
+            box-shadow:
+                7px 7px 0 #000;
+
+            transition:
+                transform 0.15s,
+                box-shadow 0.15s,
+                background 0.15s;
+        }
+
+
+        .box:hover {
+
+            transform: translateY(-6px);
+
+            background: rgba(25, 80, 25, 0.85);
+
+            box-shadow:
+                10px 10px 0 #000;
+        }
+
+
+        .box h2 {
+
+            margin-top: 0;
+
+            font-size: 19px;
+
+            text-shadow:
+                3px 3px 0 #000;
+        }
+
+
+        .box p {
+
+            font-size: 10px;
+
+            line-height: 1.9;
+
+            color: #ddd;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            margin-top: 70px;
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            background: rgba(0, 0, 0, 0.82);
+
+            border-top: 3px solid #3f8f3f;
+
+            color: #aaa;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================
+           HANDY
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            header {
+
+                padding: 45px 15px;
+            }
+
+
+            header h1 {
+
+                font-size: 25px;
+            }
+
+
+            header p {
+
+                font-size: 10px;
+            }
+
+
+            nav a {
+
+                font-size: 9px;
+
+                padding: 10px;
+            }
+
+
+            main {
+
+                margin: 30px auto;
+
+                padding: 15px;
+            }
+
+
+            .welcome {
+
+                padding: 25px 20px;
+            }
+
+
+            .welcome h2 {
+
+                font-size: 18px;
+            }
+
+
+            .box {
+
+                padding: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <h1>⛏️ Cuberealm Wiki</h1>
+
+        <p>Das offizielle Wiki von Cuberealm</p>
+
+    </header>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav>
+
+        <a href="index.html">🏠 Startseite</a>
+
+        <a href="spieler.html">👥 Spieler</a>
+
+        <a href="raenge.html">🏆 Ränge</a>
+
+        <a href="spielmodi.html">🎮 Spielmodi</a>
+
+        <a href="bauwerke.html">🏗️ Bauwerke</a>
+
+        <a href="karte.html">🗺️ Karte</a>
+
+        <a href="fraktionen.html">⚔️ Fraktionen</a>
+
+    </nav>
+
+
+    <!-- =========================
+         SUCHFUNKTION
+    ========================= -->
+
+    <div class="suchbereich">
+
+        <div class="suchleiste">
+
+            <span>🔎</span>
+
+            <input
+                type="text"
+                id="wikiSuche"
+                placeholder="Im Cuberealm Wiki suchen..."
+                oninput="sucheWiki()"
+            >
+
+        </div>
+
+
+        <div id="suchErgebnisse"></div>
+
+    </div>
+
+
+    <!-- =========================
+         HAUPTINHALT
+    ========================= -->
+
+    <main>
+
+
+        <section class="welcome">
+
+            <h2>Willkommen im Cuberealm Wiki!</h2>
+
+            <p>
+                Willkommen im Wiki von Cuberealm.
+            </p>
+
+            <p>
+                Hier findest du Informationen über die Spieler,
+                Ränge, Spielmodi, Bauwerke, die Karte
+                und die verschiedenen Fraktionen von Cuberealm.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             WIKI-BEREICHE
+        ========================= -->
+
+        <section class="boxes">
+
+
+            <!-- SPIELER -->
+
+            <a class="box" href="spieler.html">
+
+                <h2>👥 Spieler</h2>
+
+                <p>
+                    Entdecke die Spieler von Cuberealm
+                    und erfahre mehr über ihre Minecraft-Namen
+                    und Rollen.
+                </p>
+
+            </a>
+
+
+            <!-- RÄNGE -->
+
+            <a class="box" href="raenge.html">
+
+                <h2>🏆 Ränge</h2>
+
+                <p>
+                    Erfahre mehr über die verschiedenen Ränge
+                    von Cuberealm und ihre Aufgaben.
+                </p>
+
+            </a>
+
+
+            <!-- SPIELMODI -->
+
+            <a class="box" href="spielmodi.html">
+
+                <h2>🎮 Spielmodi</h2>
+
+                <p>
+                    Entdecke die verschiedenen Spielmodi
+                    von Cuberealm – von Citybuild und Survival
+                    bis hin zu Duels und kommenden Minigames.
+                </p>
+
+            </a>
+
+
+            <!-- BAUWERKE -->
+
+            <a class="box" href="bauwerke.html">
+
+                <h2>🏗️ Bauwerke</h2>
+
+                <p>
+                    Entdecke besondere Gebäude,
+                    Bauwerke und Orte in der Welt von Cuberealm.
+                </p>
+
+            </a>
+
+
+            <!-- KARTE -->
+
+            <a class="box" href="karte.html">
+
+                <h2>🗺️ Karte</h2>
+
+                <p>
+                    Erfahre mehr über die Welt von Cuberealm
+                    und wichtige Orte auf der Karte.
+                </p>
+
+            </a>
+
+
+            <!-- FRAKTIONEN -->
+
+            <a class="box" href="fraktionen.html">
+
+                <h2>⚔️ Fraktionen & Teams</h2>
+
+                <p>
+                    Entdecke die verschiedenen Fraktionen,
+                    Clans, Teams und ihre Bündnisse.
+                </p>
+
+            </a>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        Cuberealm Wiki
+
+        <br><br>
+
+        Eine Minecraft-Welt von uns für uns. ⛏️
+
+    </footer>
+
+
+    <script src="suche.js"></script>
+
+
+</body>
+
+</html>

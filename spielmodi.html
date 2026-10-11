@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+
+<html lang="de">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cuberealms Wiki – Spielmodi</title>
+
+    <!-- Minecraft-Schrift -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            margin: 0;
+
+            color: white;
+
+            font-family: "Press Start 2P", monospace;
+
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.35),
+                    rgba(0, 0, 0, 0.75)
+                ),
+                url("wiki.png") center center / cover fixed no-repeat;
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+
+            text-align: center;
+
+            padding: 55px 20px;
+
+            background: rgba(0, 0, 0, 0.55);
+
+            border-bottom: 4px solid #3f8f3f;
+
+            box-shadow:
+                0 5px 0 rgba(0, 0, 0, 0.5);
+        }
+
+
+        header h1 {
+
+            margin: 0;
+
+            font-size: 34px;
+
+            text-shadow:
+                4px 4px 0 #000,
+                0 0 10px #000;
+        }
+
+
+        header p {
+
+            margin-top: 22px;
+
+            font-size: 13px;
+
+            text-shadow:
+                3px 3px 0 #000;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            padding: 14px;
+
+            background: rgba(0, 0, 0, 0.88);
+
+            backdrop-filter: blur(5px);
+
+            border-bottom: 3px solid #3f8f3f;
+        }
+
+
+        nav a {
+
+            display: inline-block;
+
+            padding: 12px 16px;
+
+            color: white;
+
+            text-decoration: none;
+
+            background: #1b1b1b;
+
+            border: 2px solid #555;
+
+            box-shadow:
+                3px 3px 0 #000;
+
+            font-size: 11px;
+
+            transition: 0.15s;
+        }
+
+
+        nav a:hover {
+
+            background: #2f7d32;
+
+            border-color: #6fcf6f;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           HAUPTBEREICH
+        ========================= */
+
+        main {
+
+            max-width: 1150px;
+
+            margin: 55px auto;
+
+            padding: 20px;
+        }
+
+
+        /* =========================
+           EINLEITUNG
+        ========================= */
+
+        .intro {
+
+            text-align: center;
+
+            margin-bottom: 40px;
+
+            padding: 30px;
+
+            background: rgba(0, 0, 0, 0.70);
+
+            border: 3px solid #3f8f3f;
+
+            box-shadow:
+                0 0 0 3px #173d17,
+                7px 7px 0 #000;
+        }
+
+
+        .intro h2 {
+
+            margin-top: 0;
+
+            font-size: 22px;
+
+            text-shadow:
+                3px 3px 0 #000;
+        }
+
+
+        .intro p {
+
+            font-size: 11px;
+
+            line-height: 1.8;
+
+            color: #ddd;
+        }
+
+
+        /* =========================
+           SPIELMODI GRID
+        ========================= */
+
+        .gamemodes {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(270px, 1fr));
+
+            gap: 30px;
+
+            align-items: stretch;
+        }
+
+
+        /* =========================
+           SPIELMODUS-KARTE
+        ========================= */
+
+        .gamemode {
+
+            position: relative;
+
+            display: flex;
+
+            flex-direction: column;
+
+            min-height: 390px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.65),
+                    rgba(0, 0, 0, 0.88)
+                );
+
+            border: 4px solid #111;
+
+            padding: 30px;
+
+            box-shadow:
+                0 0 0 3px #3f8f3f,
+                8px 8px 0 #000;
+
+            transition:
+                transform 0.15s,
+                box-shadow 0.15s,
+                border-color 0.15s;
+        }
+
+
+        /* =========================
+           HINTERGRUND-BILDER
+        ========================= */
+
+        .gamemode::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 0;
+
+            background-position: center;
+
+            background-size: cover;
+
+            background-repeat: no-repeat;
+
+            opacity: 0.45;
+
+            transition: 0.2s;
+        }
+
+
+        .gamemode:hover {
+
+            transform: translateY(-6px);
+
+            box-shadow:
+                10px 10px 0 #000;
+        }
+
+
+        .gamemode:hover::before {
+
+            opacity: 0.65;
+
+            transform: scale(1.04);
+        }
+
+
+        .gamemode > * {
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* =========================
+           CITYBUILD BILD
+        ========================= */
+
+        .citybuild::before {
+
+            background-image:
+                url("citybuild.jpg");
+        }
+
+
+        /* =========================
+           SURVIVAL BILD
+        ========================= */
+
+        .survival::before {
+
+            background-image:
+                url("survival.jpg");
+        }
+
+
+        /* =========================
+           DUELS BILD
+        ========================= */
+
+        .duels::before {
+
+            background-image:
+                url("cpvp.jpg");
+        }
+
+
+        /* =========================
+           MINIGAMES BILD
+        ========================= */
+
+        .minigames::before {
+
+            background-image:
+                url("minigames.jpg");
+        }
+
+
+        /* =========================
+           GAMEMODE TITEL
+        ========================= */
+
+        .gamemode h2 {
+
+            margin: 0 0 24px 0;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 34px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            color: white;
+
+            text-transform: uppercase;
+
+            text-shadow:
+                4px 4px 0 #000,
+                0 0 12px rgba(0, 0, 0, 0.9);
+        }
+
+
+        /* =========================
+           BESCHREIBUNG
+        ========================= */
+
+        .gamemode p {
+
+            font-size: 11px;
+
+            line-height: 1.9;
+
+            color: #eee;
+
+            text-shadow:
+                2px 2px 0 #000;
+        }
+
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status {
+
+            display: table;
+
+            margin: auto auto 0;
+
+            padding: 11px 14px;
+
+            font-size: 9px;
+
+            border: 3px solid #111;
+
+            box-shadow:
+                3px 3px 0 #000;
+
+            text-shadow:
+                2px 2px 0 #000;
+        }
+
+
+        .online {
+
+            background: #3f8f3f;
+        }
+
+
+        .development {
+
+            background: #b87800;
+
+            color: white;
+        }
+
+
+        /* =========================
+           BESONDERE FARBEN
+        ========================= */
+
+        .duels {
+
+            border-color: #8f3f3f;
+        }
+
+
+        .duels:hover {
+
+            border-color: #d85b5b;
+        }
+
+
+        .minigames {
+
+            border-color: #8f7b3f;
+        }
+
+
+        .minigames:hover {
+
+            border-color: #d8bd5b;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            margin-top: 70px;
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            background: rgba(0, 0, 0, 0.82);
+
+            border-top: 3px solid #3f8f3f;
+
+            color: #aaa;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================
+           HANDY
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            header {
+
+                padding: 45px 15px;
+            }
+
+
+            header h1 {
+
+                font-size: 24px;
+            }
+
+
+            header p {
+
+                font-size: 10px;
+            }
+
+
+            nav a {
+
+                font-size: 9px;
+
+                padding: 10px;
+            }
+
+
+            main {
+
+                margin: 30px auto;
+
+                padding: 15px;
+            }
+
+
+            .intro {
+
+                padding: 20px;
+            }
+
+
+            .intro h2 {
+
+                font-size: 17px;
+            }
+
+
+            .gamemode {
+
+                min-height: 360px;
+
+                padding: 25px;
+            }
+
+
+            .gamemode h2 {
+
+                font-size: 27px;
+            }
+
+
+            .gamemode p {
+
+                font-size: 10px;
+            }
+
+
+            .status {
+
+                font-size: 8px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <h1>🎮 Spielmodi</h1>
+
+        <p>Die verschiedenen Spielmodi von Cuberealm</p>
+
+    </header>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav>
+
+        <a href="index.html">🏠 Startseite</a>
+
+        <a href="spieler.html">👥 Spieler</a>
+
+        <a href="spielmodi.html">🎮 Spielmodi</a>
+
+        <a href="bauwerke.html">🏗️ Bauwerke</a>
+
+        <a href="karte.html">🗺️ Karte</a>
+
+        <a href="fraktionen.html">⚔️ Fraktionen</a>
+
+    </nav>
+
+
+    <!-- =========================
+         HAUPTINHALT
+    ========================= -->
+
+    <main>
+
+
+        <section class="intro">
+
+            <h2>Spielmodi von Cuberealm</h2>
+
+            <p>
+                Cuberealm bietet verschiedene Spielmodi
+                für unterschiedliche Arten zu spielen.
+            </p>
+
+            <p>
+                Von entspanntem Bauen über Survival
+                bis hin zu spannenden PvP-Kämpfen.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             SPIELMODI
+        ========================= -->
+
+        <section class="gamemodes">
+
+
+            <!-- CITYBUILD -->
+
+            <div class="gamemode citybuild">
+
+                <h2>Citybuild</h2>
+
+                <p>
+                    Baue deine eigene Stadt, errichte Gebäude
+                    und gestalte dein eigenes Grundstück.
+                </p>
+
+                <div class="status online">
+                    VERFÜGBAR
+                </div>
+
+            </div>
+
+
+            <!-- SURVIVAL -->
+
+            <div class="gamemode survival">
+
+                <h2>Survival / SMP</h2>
+
+                <p>
+                    Sammle Ressourcen, baue deine Basis,
+                    erkunde die Welt und spiele gemeinsam
+                    mit anderen Spielern.
+                </p>
+
+                <div class="status online">
+                    VERFÜGBAR
+                </div>
+
+            </div>
+
+
+            <!-- DUELS -->
+
+            <div class="gamemode duels">
+
+                <h2>Duels</h2>
+
+                <p>
+                    Stelle dich anderen Spielern in direkten
+                    Kämpfen und beweise dein Können.
+                </p>
+
+                <div class="status online">
+                    VERFÜGBAR
+                </div>
+
+            </div>
+
+
+            <!-- MINIGAMES -->
+
+            <div class="gamemode minigames">
+
+                <h2>Minigames</h2>
+
+                <p>
+                    Ein neuer Spielmodus mit verschiedenen
+                    Minigames befindet sich momentan
+                    in Entwicklung.
+                </p>
+
+                <div class="status development">
+                    IN ENTWICKLUNG
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        Cuberealm Wiki
+
+        <br><br>
+
+        Eine Minecraft-Welt von uns für uns. ⛏️
+
+    </footer>
+
+
+</body>
+
+</html>

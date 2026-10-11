@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+
+<html lang="de">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cuberealms Wiki – Ränge</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: white;
+            font-family: "Press Start 2P", monospace;
+
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.35),
+                    rgba(0, 0, 0, 0.78)
+                ),
+                url("wiki.png") center center / cover fixed no-repeat;
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            text-align: center;
+            padding: 55px 20px;
+
+            background: rgba(0, 0, 0, 0.60);
+
+            border-bottom: 4px solid #3f8f3f;
+
+            box-shadow:
+                0 5px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            margin: 0;
+
+            font-size: 34px;
+
+            text-shadow:
+                4px 4px 0 #000,
+                0 0 10px #000;
+        }
+
+        header p {
+            margin-top: 22px;
+
+            font-size: 13px;
+
+            text-shadow:
+                3px 3px 0 #000;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            padding: 14px;
+
+            background: rgba(0, 0, 0, 0.88);
+
+            backdrop-filter: blur(5px);
+
+            border-bottom: 3px solid #3f8f3f;
+        }
+
+        nav a {
+            display: inline-block;
+
+            padding: 12px 16px;
+
+            color: white;
+
+            text-decoration: none;
+
+            background: #1b1b1b;
+
+            border: 2px solid #555;
+
+            box-shadow:
+                3px 3px 0 #000;
+
+            font-size: 11px;
+
+            transition: 0.15s;
+        }
+
+        nav a:hover {
+            background: #2f7d32;
+
+            border-color: #6fcf6f;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           HAUPTBEREICH
+        ========================= */
+
+        main {
+            max-width: 1100px;
+
+            margin: 55px auto;
+
+            padding: 20px;
+        }
+
+
+        /* =========================
+           EINLEITUNG
+        ========================= */
+
+        .intro {
+            text-align: center;
+
+            margin-bottom: 45px;
+
+            padding: 30px;
+
+            background: rgba(0, 0, 0, 0.72);
+
+            border: 3px solid #3f8f3f;
+
+            box-shadow:
+                0 0 0 3px #173d17,
+                7px 7px 0 #000;
+        }
+
+        .intro h2 {
+            margin-top: 0;
+
+            font-size: 22px;
+
+            text-shadow:
+                3px 3px 0 #000;
+        }
+
+        .intro p {
+            font-size: 11px;
+
+            line-height: 1.9;
+
+            color: #ddd;
+        }
+
+
+        /* =========================
+           RANG-HIERARCHIE
+        ========================= */
+
+        .hierarchie {
+            text-align: center;
+
+            margin-bottom: 45px;
+
+            padding: 30px;
+
+            background: rgba(0, 0, 0, 0.75);
+
+            border: 3px solid #555;
+
+            box-shadow:
+                6px 6px 0 #000;
+        }
+
+        .hierarchie h2 {
+            margin-top: 0;
+
+            font-size: 20px;
+
+            text-shadow:
+                3px 3px 0 #000;
+        }
+
+        .rangfolge {
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-top: 30px;
+        }
+
+        .rangfolge span {
+            padding: 12px 15px;
+
+            background: #1b1b1b;
+
+            border: 2px solid #555;
+
+            box-shadow:
+                3px 3px 0 #000;
+
+            font-size: 10px;
+        }
+
+        .pfeil {
+            border: none !important;
+
+            box-shadow: none !important;
+
+            background: transparent !important;
+
+            font-size: 18px !important;
+
+            padding: 0 !important;
+        }
+
+
+        /* =========================
+           RANG-KARTEN
+        ========================= */
+
+        .ränge {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 30px;
+        }
+
+        .rang {
+            padding: 30px;
+
+            min-height: 300px;
+
+            background: rgba(0, 0, 0, 0.78);
+
+            border: 4px solid #3f8f3f;
+
+            box-shadow:
+                7px 7px 0 #000;
+
+            transition:
+                transform 0.15s,
+                box-shadow 0.15s;
+        }
+
+        .rang:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                10px 10px 0 #000;
+        }
+
+        .rang h2 {
+            margin-top: 0;
+
+            font-size: 22px;
+
+            text-shadow:
+                3px 3px 0 #000;
+        }
+
+        .rang h3 {
+            margin-top: 25px;
+
+            font-size: 11px;
+
+            color: #aaa;
+        }
+
+        .rang p {
+            font-size: 10px;
+
+            line-height: 1.9;
+
+            color: #ddd;
+        }
+
+        .rang ul {
+            padding-left: 20px;
+        }
+
+        .rang li {
+            margin-bottom: 13px;
+
+            font-size: 9px;
+
+            line-height: 1.7;
+
+            color: #eee;
+        }
+
+
+        /* =========================
+           BESONDERE RÄNGE
+        ========================= */
+
+        .owner {
+            border-color: #d4af37;
+        }
+
+        .admin {
+            border-color: #b94a48;
+        }
+
+        .developer {
+            border-color: #4f8fd1;
+        }
+
+        .builder {
+            border-color: #4caf50;
+        }
+
+        .media {
+            border-color: #b56bd6;
+        }
+
+        .spieler {
+            border-color: #777;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            margin-top: 70px;
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            background: rgba(0, 0, 0, 0.82);
+
+            border-top: 3px solid #3f8f3f;
+
+            color: #aaa;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================
+           HANDY
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 45px 15px;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            header p {
+                font-size: 10px;
+            }
+
+            nav a {
+                font-size: 9px;
+
+                padding: 10px;
+            }
+
+            main {
+                margin: 30px auto;
+
+                padding: 15px;
+            }
+
+            .intro {
+                padding: 20px;
+            }
+
+            .intro h2 {
+                font-size: 17px;
+            }
+
+            .hierarchie {
+                padding: 20px;
+            }
+
+            .rangfolge {
+                flex-direction: column;
+            }
+
+            .pfeil {
+                transform: rotate(90deg);
+            }
+
+            .rang {
+                padding: 25px;
+            }
+
+            .rang h2 {
+                font-size: 19px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <h1>🏆 Ränge</h1>
+
+        <p>Die verschiedenen Ränge von Cuberealm</p>
+
+    </header>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav>
+
+        <a href="index.html">🏠 Startseite</a>
+
+        <a href="spieler.html">👥 Spieler</a>
+
+        <a href="raenge.html">🏆 Ränge</a>
+
+        <a href="spielmodi.html">🎮 Spielmodi</a>
+
+        <a href="bauwerke.html">🏗️ Bauwerke</a>
+
+        <a href="karte.html">🗺️ Karte</a>
+
+        <a href="fraktionen.html">⚔️ Fraktionen</a>
+
+    </nav>
+
+
+    <!-- =========================
+         HAUPTINHALT
+    ========================= -->
+
+    <main>
+
+
+        <section class="intro">
+
+            <h2>Die Ränge von Cuberealm</h2>
+
+            <p>
+                Auf Cuberealm gibt es verschiedene Ränge
+                mit unterschiedlichen Aufgaben und Zuständigkeiten.
+            </p>
+
+            <p>
+                Je höher ein Rang in der Hierarchie steht,
+                desto größer sind normalerweise die Aufgaben
+                und Verantwortungen.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             HIERARCHIE
+        ========================= -->
+
+        <section class="hierarchie">
+
+            <h2>Rang-Hierarchie</h2>
+
+            <div class="rangfolge">
+
+                <span>OWNER</span>
+
+                <span class="pfeil">→</span>
+
+                <span>ADMIN</span>
+
+                <span class="pfeil">→</span>
+
+                <span>DEVELOPER</span>
+
+                <span class="pfeil">→</span>
+
+                <span>BUILDER</span>
+
+                <span class="pfeil">→</span>
+
+                <span>MEDIA</span>
+
+                <span class="pfeil">→</span>
+
+                <span>SPIELER</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             RÄNGE
+        ========================= -->
+
+        <section class="ränge">
+
+
+            <!-- OWNER -->
+
+            <div class="rang owner">
+
+                <h2>👑 Owner</h2>
+
+                <h3>LEITUNG DES SERVERS</h3>
+
+                <p>
+                    Der Owner steht an der Spitze von Cuberealm
+                    und trägt die Verantwortung für den gesamten Server.
+                </p>
+
+                <ul>
+
+                    <li>Leitet Cuberealm</li>
+
+                    <li>Trifft wichtige Entscheidungen</li>
+
+                    <li>Verwaltet das Serverteam</li>
+
+                    <li>Entscheidet über wichtige Änderungen</li>
+
+                    <li>Hat die höchste Verantwortung</li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- ADMIN -->
+
+            <div class="rang admin">
+
+                <h2>🛡️ Admin</h2>
+
+                <h3>SERVERVERWALTUNG</h3>
+
+                <p>
+                    Admins unterstützen die Serverleitung
+                    bei der Verwaltung von Cuberealm.
+                </p>
+
+                <ul>
+
+                    <li>Unterstützt den Owner</li>
+
+                    <li>Verwaltet Teile des Servers</li>
+
+                    <li>Kümmert sich um Probleme</li>
+
+                    <li>Unterstützt das Team</li>
+
+                    <li>Kann bei Regelverstößen eingreifen</li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- DEVELOPER -->
+
+            <div class="rang developer">
+
+                <h2>💻 Developer</h2>
+
+                <h3>TECHNISCHE ENTWICKLUNG</h3>
+
+                <p>
+                    Developer kümmern sich um die technische
+                    Entwicklung und Programmierung von Cuberealm.
+                </p>
+
+                <ul>
+
+                    <li>Entwickelt neue Systeme</li>
+
+                    <li>Programmiert Plugins und Funktionen</li>
+
+                    <li>Behebt technische Fehler</li>
+
+                    <li>Arbeitet an neuen Features</li>
+
+                    <li>Unterstützt die technische Serververwaltung</li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- BUILDER -->
+
+            <div class="rang builder">
+
+                <h2>🔨 Builder</h2>
+
+                <h3>BAUEN UND GESTALTEN</h3>
+
+                <p>
+                    Builder kümmern sich um die Gestaltung
+                    und den Aufbau der Minecraft-Welt.
+                </p>
+
+                <ul>
+
+                    <li>Baut Gebäude und Strukturen</li>
+
+                    <li>Gestaltet wichtige Bereiche</li>
+
+                    <li>Arbeitet an Maps</li>
+
+                    <li>Unterstützt beim Ausbau von Cuberealm</li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- MEDIA -->
+
+            <div class="rang media">
+
+                <h2>📺 Media</h2>
+
+                <h3>MEDIEN UND ÖFFENTLICHKEIT</h3>
+
+                <p>
+                    Der Media-Rang ist für die mediale Darstellung
+                    und Bekanntmachung von Cuberealm zuständig.
+                </p>
+
+                <ul>
+
+                    <li>Erstellt Videos und Bilder</li>
+
+                    <li>Betreibt Social Media</li>
+
+                    <li>Bewirbt Cuberealm</li>
+
+                    <li>Erstellt Content über den Server</li>
+
+                    <li>Unterstützt die Öffentlichkeitsarbeit</li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- SPIELER -->
+
+            <div class="rang spieler">
+
+                <h2>👤 Spieler</h2>
+
+                <h3>NORMALER SERVER-RANG</h3>
+
+                <p>
+                    Der Spieler ist der normale Rang für Mitglieder
+                    der Cuberealm-Community.
+                </p>
+
+                <ul>
+
+                    <li>Kann auf Cuberealm spielen</li>
+
+                    <li>Kann die verschiedenen Spielmodi nutzen</li>
+
+                    <li>Kann bauen und die Welt erkunden</li>
+
+                    <li>Kann Fraktionen und Teams beitreten</li>
+
+                    <li>Muss die Serverregeln beachten</li>
+
+                </ul>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        Cuberealm Wiki
+
+        <br><br>
+
+        Eine Minecraft-Welt von uns für uns. ⛏️
+
+    </footer>
+
+
+</body>
+
+</html>
